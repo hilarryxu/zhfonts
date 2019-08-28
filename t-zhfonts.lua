@@ -41,18 +41,18 @@ cjkfonts.mono.bold        = {name = 'simkai',   rscale = '1.0'}
 cjkfonts.mono.italic      = {name = 'fangsong', rscale = '1.0'}
 cjkfonts.mono.bolditalic  = {name = 'simkai',   rscale = '1.0'}
 
-latinfonts.serif.regular    = {name = 'latinmodernromanregular'}
-latinfonts.serif.bold       = {name = 'latinmodernromanbold'}
-latinfonts.serif.italic     = {name = 'latinmodernromanitalic'}
-latinfonts.serif.bolditalic = {name = 'latinmodernromanbolditalic'}
-latinfonts.sans.regular     = {name = 'latinmodernsansregular'}
-latinfonts.sans.bold        = {name = 'latinmodernsansbold'}
-latinfonts.sans.italic      = {name = 'latinmodernsansitalic'}
-latinfonts.sans.bolditalic  = {name = 'latinmodernsansbolditalic'}
-latinfonts.mono.regular     = {name = 'latinmodernmonoregular'}
-latinfonts.mono.bold        = {name = 'latinmodernmonobold'}
-latinfonts.mono.italic      = {name = 'latinmodernmonoitalic'}
-latinfonts.mono.bolditalic  = {name = 'latinmodernmonobolditalic'}
+latinfonts.serif.regular    = {name = 'texgyrepagellaregular'}
+latinfonts.serif.bold       = {name = 'texgyrepagellabold'}
+latinfonts.serif.italic     = {name = 'texgyrepagellaitalic'}
+latinfonts.serif.bolditalic = {name = 'texgyrepagellabolditalic'}
+latinfonts.sans.regular     = {name = 'texgyreherosregular'}
+latinfonts.sans.bold        = {name = 'texgyreherosbold'}
+latinfonts.sans.italic      = {name = 'texgyreherositalic'}
+latinfonts.sans.bolditalic  = {name = 'texgyreherosbolditalic'}
+latinfonts.mono.regular     = {name = 'lmmono10regular'}
+latinfonts.mono.bold        = {name = 'lmmonolt10bold'}
+latinfonts.mono.italic      = {name = 'lmmono10italic'}
+latinfonts.mono.bolditalic  = {name = 'lmmonolt10boldoblique'}
 
 local math_typeface = {}
 math_typeface.name = 'xits'
@@ -168,7 +168,7 @@ local function gen_typeface ()
     context ('\\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]')
     context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default]')
     if math_typeface then
-	context ('\\definetypeface[zhfonts][mm][math]['.. math_typeface.name .. '][default]')
+	context ('\\definetypeface[zhfonts][mm][math]['.. math_typeface.name .. '][default][rscale=auto]')
     end
     context ('\\stoptypescript')
 end
@@ -225,7 +225,7 @@ function zhfonts.main (param)
     local arg_list = string_split_and_strip (param, ',')
     if arg_list[1] ~= "none" and arg_list[2] ~= "none" then
 	context ('\\definefontfeature[zh][default][' .. fontfeatures .. ']')
-	context ('\\setupalign[hanging, hz]')
+	context ('\\setupalign[hz,hanging]')
         zhfonts.gen_typescript ()
         if arg_list[1] ~= "hack" and arg_list[2] ~= "hack" then
 	    context ('\\usetypescript[zhfonts]')
@@ -233,3 +233,4 @@ function zhfonts.main (param)
         end
     end
 end
+
